@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "netflix-data-pipeline-example"
+version = "0.1.0"
+description = ""
+authors = ["Braun <breyes@mozilla.com>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mimesis = "^14.0.0"
+duckdb = "^0.9.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pyspark = "^3.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
