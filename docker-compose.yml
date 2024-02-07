@@ -1,5 +1,18 @@
 version: "2.2"
 services:
+  trino:
+    hostname: trino
+    container_name: trino
+    image: 'trinodb/trino:latest'
+    depends_on:
+      - spark-iceberg
+    networks:
+      iceberg_net:
+    ports:
+      - '8084:8084'
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog:ro
+      - ./trino/config.properties:/etc/trino/config.properties:ro
   jobmanager:
     image: flink:latest
     ports:
@@ -10,8 +23,7 @@ services:
     environment:
       - |
         FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager        
-
+        jobmanager.rpc.address: jobmanager
   taskmanager:
     image: flink:latest
     depends_on:
