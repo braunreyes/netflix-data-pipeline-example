@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: netflix
+    database: netflix  
+    schema: netflix  
+    tables:
+      - name: users_raw
+      - name: titles_raw
+  - name: kafka
+    database: kafka  
+    schema: netflix 
+    tables:
+      - name: play_events

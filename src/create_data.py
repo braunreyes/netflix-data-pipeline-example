@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 
 from mimesis import Generic, Schema
@@ -21,6 +22,7 @@ def schema_definition():
         "added_on": generic.datetime.datetime(start=2020, end=2024).strftime(
             "%Y-%m-%d %H:%M:%S"
         ),
+        "updated_at": datetime.strptime("2024-01-01 00:00:00", "%Y-%m-%d %H:%M:%S"),
     }
 
 

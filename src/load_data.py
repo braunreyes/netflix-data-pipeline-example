@@ -1,4 +1,7 @@
+from datetime import datetime
+
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import lit
 
 spark = SparkSession.builder.appName(  # type: ignore
     "Loading Test Data to Iceberg"
@@ -17,6 +20,8 @@ def load_data():
         .option("header", True)
         .csv("/home/iceberg/test_data/netflix_titles_raw.csv")
     )
+    update_at_value = datetime.strptime("2024-01-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+    df = df.withColumn("updated_at", lit(update_at_value))
     df.write.saveAsTable("netflix.titles_raw", format="iceberg", mode="overwrite")
 
 

@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: users_dim
+    description: ""
+    columns:
+      - name: user_id
+        data_type: integer
+        description: "unique netflix subscriber identification"
+
+      - name: user_name
+        data_type: varchar
+        description: "netflix subscriber user name"
+        tests: 
+          - unique
+
+      - name: date_of_birth
+        data_type: date
+        description: "netflix subscriber date of birth"
+
+      - name: email
+        data_type: varchar
+        description: "netflix subscriber email"
+        tests: 
+          - unique
+
+      - name: street_number
+        data_type: integer
+        description: "netflix address street number"
+
+      - name: street_name
+        data_type: varchar
+        description: "netflix address street name"
+
+      - name: street_suffix
+        data_type: varchar
+        description: "netflix address street suffix"
+
+      - name: state
+        data_type: varchar
+        description: "netflix address state"
+
+      - name: city
+        data_type: varchar
+        description: "netflix address city"
+
+      - name: zip_code
+        data_type: integer
+        description: "netflix address zip code"
+
+      - name: added_on
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when user subscribed"
+
+      - name: updated_at
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was updated"
+
+      - name: dbt_scd_id
+        data_type: varchar
+        description: "MD5 hash of primary_key and strategy key"
+
+      - name: dbt_updated_at
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was updated copied by dbt"
+
+      - name: dbt_valid_from
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was valid from"
+
+      - name: dbt_valid_to
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was valid to.  The current record will have null for this value"

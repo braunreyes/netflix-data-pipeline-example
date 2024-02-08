@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: titles_dim
+    description: ""
+    columns:
+      - name: show_id
+        data_type: varchar
+        description: "unique netflix show id"
+
+      - name: show_type
+        data_type: varchar
+        description: "netflix show type"
+
+      - name: title
+        data_type: varchar
+        description: "netflix show title"
+
+      - name: director
+        data_type: varchar
+        description: "netflix show director(s)"
+
+      - name: show_cast
+        data_type: varchar
+        description: "list of cast members in show"
+
+      - name: country
+        data_type: varchar
+        description: "country show was produced in"
+
+      - name: date_added
+        data_type: varchar
+        description: "UTC timestamp of when show was added to library"
+
+      - name: release_year
+        data_type: varchar
+        description: "year the show was released"
+
+      - name: rating
+        data_type: varchar
+        description: "rating of netflix show"
+
+      - name: duration
+        data_type: varchar
+        description: "total duration of show"
+
+      - name: listed_in
+        data_type: varchar
+        description: "netflix categories show is listed in"
+
+      - name: show_description
+        data_type: varchar
+        description: "description of the netflix show"
+
+      - name: updated_at
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was updated"
+
+      - name: dbt_scd_id
+        data_type: varchar
+        description: "MD5 hash of primary_key and strategy key"
+
+      - name: dbt_updated_at
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was updated copied by dbt"
+
+      - name: dbt_valid_from
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was valid from"
+
+      - name: dbt_valid_to
+        data_type: timestamp(6) with time zone
+        description: "UTC datetime of when record was valid to.  The current record will have null for this value"
