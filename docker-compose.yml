@@ -48,7 +48,7 @@ services:
     networks:
       iceberg_net:
     volumes:
-      - ./test_data:/opt/flink/test_data
+      - ./src:/opt/flink/scripts
     command: jobmanager
     environment:
       - |
@@ -59,7 +59,7 @@ services:
     depends_on:
       - jobmanager
     volumes:
-      - ./test_data:/opt/flink/test_data
+      - ./src:/opt/flink/scripts
     networks:
       iceberg_net:
     command: taskmanager

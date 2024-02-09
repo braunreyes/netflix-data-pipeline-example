@@ -28,6 +28,7 @@ def main():
     """
     ).fetchall()
 
+    count = 0
     for _ in range(100000):
         event_dict = {
             "user_id": random.choice(user_ids)[0],
@@ -49,11 +50,16 @@ def main():
                 pass
 
         producer.produce("netflix.play_events", value=event_data, callback=acked)
-
+        count += 1
         # Wait up to 1 second for events. Callbacks will be invoked during
         # this method call if the message is acknowledged.
-        producer.poll(1)
-
+        if count == 1000:
+            producer.poll(1)
+            print("Sent 1000 messages...")
+            count = 0
+    print(f"Sent {count} messages...")
+    producer.poll(60)
+    producer.flush
 
 if __name__ == "__main__":
     main()
