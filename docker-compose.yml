@@ -39,23 +39,27 @@ services:
     ports:
       - '8084:8084'
     volumes:
-      - ./trino/catalog:/etc/trino/catalog:ro
-      - ./trino/config.properties:/etc/trino/config.properties:ro
+      - ./trino_configs/catalog:/etc/trino/catalog:ro
+      - ./trino_configs/config.properties:/etc/trino/config.properties:ro
   jobmanager:
-    image: flink:latest
+    build: .
     ports:
       - "8081:8081"
     networks:
       iceberg_net:
+    volumes:
+      - ./test_data:/opt/flink/test_data
     command: jobmanager
     environment:
       - |
         FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager
+        jobmanager.rpc.address: jobmanager 
   taskmanager:
-    image: flink:latest
+    build: .
     depends_on:
       - jobmanager
+    volumes:
+      - ./test_data:/opt/flink/test_data
     networks:
       iceberg_net:
     command: taskmanager
@@ -64,19 +68,7 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 2        
-  sql-client:
-    image: flink:latest
-    command: bin/sql-client.sh
-    networks:
-      iceberg_net:
-    depends_on:
-      - jobmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager
-        rest.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
   spark-iceberg:
     image: tabulario/spark-iceberg
     container_name: spark-iceberg

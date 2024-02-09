@@ -12,6 +12,7 @@ mimesis = "^14.0.0"
 duckdb = "^0.9.2"
 dbt-trino = "^1.7.1"
 confluent-kafka = "^2.3.0"
+apache-flink = "^1.18.1"
 
 
 [tool.poetry.group.dev.dependencies]

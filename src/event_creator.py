@@ -34,6 +34,7 @@ def main():
             "show_id": random.choice(show_ids)[0],
             "event_id": str(uuid4()),
             "event_type": "play",
+            "user_device": random.choice(["mobile", "browser", "smart-tv"]),
             "event_timestamp": (
                 (datetime.now(tz=timezone.utc) - timedelta(days=2))
                 + timedelta(seconds=1)
